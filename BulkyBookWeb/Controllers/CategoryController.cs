@@ -1,6 +1,9 @@
 ﻿using BulkyBookWeb.Data;
 using BulkyBookWeb.Models;
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.VisualBasic;
 
 namespace BulkyBookWeb.Controllers
 {
@@ -13,10 +16,32 @@ namespace BulkyBookWeb.Controllers
             _db = db;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index(string searchString)
         {
-            List<Category> objCategoryList = _db.Categories.ToList(); //Lay tat ca cac the loai voi dang List
-            return View(objCategoryList); // Pass du lieu den view
+            if (_db.Categories == null)
+            {
+                return Problem("Entity set 'MvcMovieContext.Movie'  is null.");
+            }
+
+            var books = from m in _db.Categories select m;
+
+            if (!String.IsNullOrEmpty(searchString))
+            {
+                books = books.Where(s => s.Name!.Contains(searchString));
+            }
+
+            var movieGenreVM = new BooksViewModel
+            {
+                Categories = await books.ToListAsync()
+            };
+
+            return View(movieGenreVM);
+        }
+
+        [HttpPost]
+        public string Index(string searchString, bool notUsed)
+        {
+            return "From [HttpPost]Index: filter on " + searchString;
         }
 
         //Truy cap den trang Create va hien thi du lieu
@@ -27,37 +52,38 @@ namespace BulkyBookWeb.Controllers
 
         //Thuc hien them du lieu
         [HttpPost]
-        public IActionResult Create(Category obj)
+        public async Task<IActionResult> Create(Category obj)
         {
-            if (ModelState.IsValid) //Validation form
+            if (ModelState.IsValid)
             {
-                _db.Categories.Update(obj); //Them du lieu 
-                _db.SaveChanges(); // Luu du lieu da them vao 
-                TempData["success"] = "Category created successfully";
-                return RedirectToAction("Index"); //Tro ve trang Index
+                _db.Add(obj);//Them du lieu 
+                await _db.SaveChangesAsync(); // Luu du lieu da them vao 
+                TempData["success"] = "Create sucessfully";
+                return RedirectToAction("Index");//Tro ve trang Index
             }
             return View();
         }
 
-        public IActionResult Edit(int? id)
+        public async Task<IActionResult> Edit(int? id)
         {
-            if(id == null || id == 0)
+            if (id == null)
             {
                 return NotFound();
             }
-            Category? category = _db.Categories.Find(id);
-            if(category == null)
+
+            var cate = await _db.Categories.FindAsync(id);
+            if(cate == null)
             {
                 return NotFound();
             }
-            return View(category);
+
+            return View(cate);
         }
 
         //Thuc hien sua du lieu
         [HttpPost]
-        public IActionResult Edit(Category obj)
+        public async Task<IActionResult> Edit(Category obj)
         {
-
             //Ten khong duoc trung voi Display Order
             if (obj.Name != null && obj.Name == obj.DisplayOrder.ToString())
             {
@@ -65,8 +91,8 @@ namespace BulkyBookWeb.Controllers
             }
             if (ModelState.IsValid) //Validation form
             {
-                _db.Categories.Add(obj); //Them du lieu 
-                _db.SaveChanges(); // Luu du lieu da them vao 
+                _db.Update(obj); //Them du lieu 
+                await _db.SaveChangesAsync();// Luu du lieu da them vao 
                 TempData["success"] = "Category updated successfully";
                 return RedirectToAction("Index"); //Tro ve trang Index
             }

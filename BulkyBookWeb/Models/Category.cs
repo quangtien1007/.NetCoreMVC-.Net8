@@ -10,10 +10,10 @@ namespace BulkyBookWeb.Models
         [Required]
         [MaxLength(100)]
         [DisplayName("Category Name")]
-        public string Name { get; set; }
+        public string? Name { get; set; }
 
         [DisplayName("Display Order")]
         [Range(1, 100)]
-        public string DisplayOrder { get; set; }
+        public string? DisplayOrder { get; set; }
     }
 }
