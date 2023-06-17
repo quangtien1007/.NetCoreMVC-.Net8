@@ -2,6 +2,7 @@
 using BulkyBookWeb.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.Data.SqlClient;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.VisualBasic;
 
@@ -16,8 +17,11 @@ namespace BulkyBookWeb.Controllers
             _db = db;
         }
 
-        public async Task<IActionResult> Index(string searchString)
+        public async Task<IActionResult> Index(string sortOrder,string searchString)
         {
+            ViewData["NameSortParam"] = String.IsNullOrEmpty(sortOrder) ? "name_desc" : "";
+            ViewData["CurrentFilter"] = searchString;
+
             if (_db.Categories == null)
             {
                 return Problem("Entity set 'MvcMovieContext.Movie'  is null.");
@@ -30,12 +34,21 @@ namespace BulkyBookWeb.Controllers
                 books = books.Where(s => s.Name!.Contains(searchString));
             }
 
+            switch (sortOrder)
+            {
+                case "name_desc":
+                    books = books.OrderByDescending(s => s.Name);
+                    break;
+                default:
+                    books = books.OrderBy(s => s.Name);
+                    break;
+            }
             var movieGenreVM = new BooksViewModel
             {
                 Categories = await books.ToListAsync()
             };
 
-            return View(movieGenreVM);
+            return View(await books.AsNoTracking().ToListAsync());
         }
 
         [HttpPost]
@@ -72,6 +85,7 @@ namespace BulkyBookWeb.Controllers
             }
 
             var cate = await _db.Categories.FindAsync(id);
+
             if(cate == null)
             {
                 return NotFound();

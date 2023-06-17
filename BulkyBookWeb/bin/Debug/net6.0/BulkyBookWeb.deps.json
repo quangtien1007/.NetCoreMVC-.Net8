@@ -10,7 +10,8 @@
         "dependencies": {
           "Microsoft.EntityFrameworkCore": "7.0.7",
           "Microsoft.EntityFrameworkCore.SqlServer": "7.0.7",
-          "Microsoft.EntityFrameworkCore.Tools": "7.0.7"
+          "Microsoft.EntityFrameworkCore.Tools": "7.0.7",
+          "Rick.Docs.Samples.RouteInfo": "1.0.0.8"
         },
         "runtime": {
           "BulkyBookWeb.dll": {}
@@ -445,6 +446,14 @@
           "lib/netstandard2.0/Mono.TextTemplating.dll": {
             "assemblyVersion": "2.2.0.0",
             "fileVersion": "2.2.1.1"
+          }
+        }
+      },
+      "Rick.Docs.Samples.RouteInfo/1.0.0.8": {
+        "runtime": {
+          "lib/net6.0/Microsoft.Docs.Samples.RouteInfo.dll": {
+            "assemblyVersion": "1.0.0.8",
+            "fileVersion": "1.0.0.8"
           }
         }
       },
@@ -972,6 +981,13 @@
       "sha512": "sha512-KZYeKBET/2Z0gY1WlTAK7+RHTl7GSbtvTLDXEZZojUdAPqpQNDL6tHv7VUpqfX5VEOh+uRGKaZXkuD253nEOBQ==",
       "path": "mono.texttemplating/2.2.1",
       "hashPath": "mono.texttemplating.2.2.1.nupkg.sha512"
+    },
+    "Rick.Docs.Samples.RouteInfo/1.0.0.8": {
+      "type": "package",
+      "serviceable": true,
+      "sha512": "sha512-vEBI0EVUCM1cMl0ZqQsmXyoZlDykT48ZscxQi7zH8xgfO896jsDqYPTw9BSzMDlQ6iPh5GtsftKmXnZpi4R1bg==",
+      "path": "rick.docs.samples.routeinfo/1.0.0.8",
+      "hashPath": "rick.docs.samples.routeinfo.1.0.0.8.nupkg.sha512"
     },
     "System.Buffers/4.5.1": {
       "type": "package",

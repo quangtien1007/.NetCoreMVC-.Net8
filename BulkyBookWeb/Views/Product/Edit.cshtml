@@ -1,0 +1,39 @@
+﻿@model Product
+<div class="row">
+    <div class="col-md-3"></div>
+    <div class="col-md-6">
+        <form method="post">
+            <div class="border-3 mt-4">
+                <div class="row pb-2">
+                    <h2 class="text-primary">Edit Product</h2>
+                    <hr />
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Name">Product name</label>
+                    <input asp-for="Name" class="form-control" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Description" class="p-0">Description</label>
+                    <input type="textarea" asp-for="Description" class="form-control" />
+                    <span asp-validation-for="Description" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <label asp-for="Image" class="p-0">Image</label>
+                    <input type="file" asp-for="Image" class="form-control" />
+                    <span asp-validation-for="Image" class="text-danger"></span>
+                </div>
+                <div class="mb-3">
+                    <input value="Edit" type="submit" class="btn btn-primary" />
+                </div>
+            </div>
+        </form>
+    </div>
+    <div class="col-md-3"></div>
+</div>
+@section Scripts{
+    @{
+        <partial name="_ValidationScriptsPartial" />
+    }
+}
+

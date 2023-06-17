@@ -1,6 +1,6 @@
 {
   "version": 2,
-  "dgSpecHash": "5zqiZEA0JVkYgnfTl+NaW5IOOyXuxnn8cvJ4C4BGRg7esqfTSF4qU96BilOnTm+X47BdRMEH7rDpJblgtFl05Q==",
+  "dgSpecHash": "RpJ56Y3x6/3rxmR73iOacE/LC2WpdODVSNLKYL94MZLPntLOXU6Wm9lC9sbCL6jVEZ0utCwUJuwkCvmIPHiJSg==",
   "success": true,
   "projectFilePath": "D:\\ASP.NET\\BulkyBook\\BulkyBookWeb\\BulkyBookWeb.csproj",
   "expectedPackageFiles": [
@@ -42,6 +42,7 @@
     "C:\\Users\\TIEN PC\\.nuget\\packages\\microsoft.win32.registry\\5.0.0\\microsoft.win32.registry.5.0.0.nupkg.sha512",
     "C:\\Users\\TIEN PC\\.nuget\\packages\\microsoft.win32.systemevents\\5.0.0\\microsoft.win32.systemevents.5.0.0.nupkg.sha512",
     "C:\\Users\\TIEN PC\\.nuget\\packages\\mono.texttemplating\\2.2.1\\mono.texttemplating.2.2.1.nupkg.sha512",
+    "C:\\Users\\TIEN PC\\.nuget\\packages\\rick.docs.samples.routeinfo\\1.0.0.8\\rick.docs.samples.routeinfo.1.0.0.8.nupkg.sha512",
     "C:\\Users\\TIEN PC\\.nuget\\packages\\system.buffers\\4.5.1\\system.buffers.4.5.1.nupkg.sha512",
     "C:\\Users\\TIEN PC\\.nuget\\packages\\system.codedom\\4.4.0\\system.codedom.4.4.0.nupkg.sha512",
     "C:\\Users\\TIEN PC\\.nuget\\packages\\system.configuration.configurationmanager\\5.0.0\\system.configuration.configurationmanager.5.0.0.nupkg.sha512",

@@ -11,6 +11,8 @@ namespace BulkyBookWeb.Data
         //Set database for Categories
         //we can CRUD Categories
         public DbSet<Category> Categories { get; set; }
+
+        public DbSet<Product> Products { get; set; }
         #endregion
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
